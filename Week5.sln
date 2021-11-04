@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day1102.OOP", "Day1102.OOP\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day1102.EsErboristeria", "Day1102.EsErboristeria\Day1102.EsErboristeria.csproj", "{CD6F867E-367C-4326-A4E1-6275AE58AA17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day1103.EsDistributoreSnack", "Day1103.EsDistributoreSnack\Day1103.EsDistributoreSnack.csproj", "{D5C1E0F5-D0E4-4958-9800-8297F6954DD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day1103.EsDistributoreSnack", "Day1103.EsDistributoreSnack\Day1103.EsDistributoreSnack.csproj", "{D5C1E0F5-D0E4-4958-9800-8297F6954DD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day1104.EsContiBancari", "Day1104.EsContiBancari\Day1104.EsContiBancari.csproj", "{12E81830-6991-4C1D-8D38-E6C932C14710}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D5C1E0F5-D0E4-4958-9800-8297F6954DD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5C1E0F5-D0E4-4958-9800-8297F6954DD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5C1E0F5-D0E4-4958-9800-8297F6954DD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12E81830-6991-4C1D-8D38-E6C932C14710}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12E81830-6991-4C1D-8D38-E6C932C14710}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12E81830-6991-4C1D-8D38-E6C932C14710}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12E81830-6991-4C1D-8D38-E6C932C14710}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
