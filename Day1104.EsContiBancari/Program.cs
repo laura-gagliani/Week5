@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Day1104.EsContiBancari.Entities;
+using System;
 
 namespace Day1104.EsContiBancari
 {
@@ -6,7 +7,7 @@ namespace Day1104.EsContiBancari
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Menu.Start();
         }
     }
 }
