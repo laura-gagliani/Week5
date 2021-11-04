@@ -32,7 +32,6 @@ namespace Day1104.EsContiBancari
         {
             if (newBankAccount != null)
             {
-                //devo generare il numero di conto: poteva essere incrementale +1 oppure randomico (non ordinato)
                 int number = GenerateAccountNumber();
 
                 //il numero ottenuto va associato al conto
@@ -42,10 +41,9 @@ namespace Day1104.EsContiBancari
                 bankAccounts.Add(newBankAccount);
 
                 //e associo all'intestatario il conto (completo di tutti i dati):
-
-                AccountHolder a = newBankAccount.AccountHolder; // l'intestatario di sto conto
-                List<BankAccount> accounts = a.BankAccounts; // la lista dei conti di sto intestatario!!! NB non la lista di conti "generica"
-                accounts.Add(newBankAccount); //aggiungo il conto alla lista
+                AccountHolder a = newBankAccount.AccountHolder; 
+                List<BankAccount> accounts = a.BankAccounts; // la lista dei conti DELLO SPECIFICO INTESTATARIO
+                accounts.Add(newBankAccount);
 
                 //SCORCIATO POTEVA ESSERE SCRITTO COSI:
                 //newBankAccount.AccountHolder.BankAccounts.Add(newBankAccount);
@@ -82,6 +80,24 @@ namespace Day1104.EsContiBancari
 
             else
                 return false;
+        }
+
+       
+        
+
+        internal static bool DeleteAccount(BankAccount account)
+        {
+            bool isDeleted = false;
+            // devo eliminarlo sia dalla lista di tutti i conti della banca sia dalla lista dei conti dello specifico intestatario
+            bool isRemovedFromBankList = bankAccounts.Remove(account);
+            bool isRemovedFromHolderList = account.AccountHolder.BankAccounts.Remove(account);
+
+            if (isRemovedFromBankList && isRemovedFromHolderList)
+            {
+                isDeleted = true;
+            }
+
+            return isDeleted;
         }
 
         internal static BankAccount GetByAccountNumber(int number)

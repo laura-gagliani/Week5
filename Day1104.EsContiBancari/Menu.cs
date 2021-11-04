@@ -44,8 +44,10 @@ namespace Day1104.EsContiBancari.Entities
                         PayIntoAccount();
                         break;
                     case '4':
+                        ShowBalance();
                         break;
-                    case '5': 
+                    case '5':
+                        DeleteAccount();
                         break;
                     case '0':
                         quit = true;
@@ -53,6 +55,51 @@ namespace Day1104.EsContiBancari.Entities
                         break;
                 }
             } while (!quit);
+        }
+
+        private static void ShowBalance()
+        {
+            int number;
+            do
+            {
+                Console.WriteLine("\nInserisci il numero di conto di cui visualizzare il saldo:");
+            } while (!int.TryParse(Console.ReadLine(), out number));
+
+            BankAccount account = BankManager.GetByAccountNumber(number);
+
+            if (account != null)
+            {
+                Console.WriteLine($"Il saldo del conto è pari a {account.Balance} euro");
+            }
+            else Console.WriteLine("\nErrore! Nessun conto trovato con questo numero");
+        }
+
+        private static void DeleteAccount()
+        {
+            int number;
+            do
+            {
+                Console.WriteLine("\nInserisci il numero di conto da chiudere:");
+            } while (!int.TryParse(Console.ReadLine(), out number));
+
+            BankAccount account = BankManager.GetByAccountNumber(number); 
+
+            if (account != null)
+            {
+                //fai cose
+                bool isDeleted = BankManager.DeleteAccount(account);
+                if (isDeleted)
+                {
+                    Console.WriteLine("\nConto chiuso con successo");
+                }
+                else Console.WriteLine("\nErrore nella chiusura del conto :(");
+            }
+            else
+            {
+                Console.WriteLine("\nErrore! Conto non trovato");
+            }
+
+
         }
 
         private static void WithdrawFromAccount()
