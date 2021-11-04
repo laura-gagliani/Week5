@@ -38,16 +38,16 @@ namespace Day1104.EsContiBancari
                 //il numero ottenuto va associato al conto
                 newBankAccount.Number = number;
 
-                //fatto ciò metto il conto in lista
+                //fatto ciò metto il conto in lista: la lista di conti GENERICA, ovvero quella della banca
                 bankAccounts.Add(newBankAccount);
 
-                //e associo all'intestatario il conto (a questo punto completo di tutti i dati):
+                //e associo all'intestatario il conto (completo di tutti i dati):
 
                 AccountHolder a = newBankAccount.AccountHolder; // l'intestatario di sto conto
                 List<BankAccount> accounts = a.BankAccounts; // la lista dei conti di sto intestatario!!! NB non la lista di conti "generica"
                 accounts.Add(newBankAccount); //aggiungo il conto alla lista
 
-                //STRINGATO POTEVA ESSERE SCRITTO COSI:
+                //SCORCIATO POTEVA ESSERE SCRITTO COSI:
                 //newBankAccount.AccountHolder.BankAccounts.Add(newBankAccount);
 
                 return true;
@@ -73,6 +73,28 @@ namespace Day1104.EsContiBancari
             }
 
             return newNumberAccount;
+        }
+
+        internal static bool UpdateAccount(BankAccount account)
+        {
+            if (account != null)
+                return true;
+
+            else
+                return false;
+        }
+
+        internal static BankAccount GetByAccountNumber(int number)
+        {
+            foreach (var item in bankAccounts)
+            {
+                if (item.Number == number)
+                {
+                    return item;
+                }
+                
+            }
+            return null;
         }
 
         internal static bool AddAccountHolder(AccountHolder newAccountHolder)

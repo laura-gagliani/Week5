@@ -26,12 +26,11 @@ namespace Day1104.EsContiBancari.Entities
                 char choice;
                 do
                 {
-                    Console.WriteLine("Seleziona dal menu:");
+                    Console.WriteLine("\nSeleziona dal menu:");
                     choice = Console.ReadKey().KeyChar;
                 } while (!(choice == '0' || choice == '1' || choice == '2' || choice == '3' || choice == '4' || choice == '5'));
 
-                Console.WriteLine("Seleziona dal menu:");
-                choice = Console.ReadKey().KeyChar;
+                
 
                 switch (choice)
                 {
@@ -39,18 +38,96 @@ namespace Day1104.EsContiBancari.Entities
                         AddNewBankAccount();
                         break;
                     case '2':
-
+                        WithdrawFromAccount();
                         break;
                     case '3':
-
+                        PayIntoAccount();
+                        break;
+                    case '4':
+                        break;
+                    case '5': 
                         break;
                     case '0':
                         quit = true;
-                        Console.WriteLine("Chiusura in corso...");
+                        Console.WriteLine("\nChiusura in corso...");
                         break;
                 }
             } while (!quit);
         }
+
+        private static void WithdrawFromAccount()
+        {
+            int number;
+            do
+            {
+                Console.WriteLine("\nInserisci il numero di conto:");
+            } while (!int.TryParse(Console.ReadLine(), out number));
+
+            BankAccount account = BankManager.GetByAccountNumber(number);
+
+            if (account != null)
+            {
+                //recupero importo versamento
+                decimal amount = GetAmount("prelevare");
+
+                if (amount > account.Balance)
+                {
+                    Console.WriteLine("\nImpossibile prelevare una somma maggiore del saldo attuale!");
+                }
+
+                else
+                {
+                    account.Balance -= amount;
+
+                    bool isUpdated = BankManager.UpdateAccount(account);
+
+                    if (isUpdated)
+                    {
+                        Console.WriteLine($"\nIl nuovo saldo è pari a {account.Balance} euro");
+                    }
+                }
+                
+
+            }
+            else
+            {
+                Console.WriteLine("\nNon esiste alcun conto con questo numero");
+            }
+
+        }
+
+        private static void PayIntoAccount()
+        {
+            int number;
+            do
+            {
+                Console.WriteLine("\nInserisci il numero di conto:");
+            } while (!int.TryParse(Console.ReadLine(), out number));
+
+            BankAccount account = BankManager.GetByAccountNumber(number);
+
+            if (account != null)
+            {
+                //recupero importo versamento
+                decimal amount = GetAmount("versare");
+
+                account.Balance += amount;  //<- se non ci spostiamo nel manager
+
+                bool isUpdated = BankManager.UpdateAccount(account);
+
+                if (isUpdated)
+                {
+                    Console.WriteLine($"\nIl nuovo saldo è pari a {account.Balance} euro");
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("\nNon esiste alcun conto con questo numero");
+            }
+        }
+
+        
 
         private static void AddNewBankAccount()
         {
@@ -198,16 +275,28 @@ namespace Day1104.EsContiBancari.Entities
 
 
         }
+
         private static string GetData(string value)
         {
             string info;
             do
             {
-                Console.WriteLine($"inserisci il {value} del cliente");
+                Console.WriteLine($"\nInserisci il {value} del cliente");
                 info = Console.ReadLine();
             } while (string.IsNullOrEmpty(info));
 
             return info;
+        }
+        private static decimal GetAmount(string value)
+        {
+            decimal amount;
+            do
+            {
+                Console.WriteLine($"\nInserisci l'importo da {value}:");
+
+            } while (!decimal.TryParse(Console.ReadLine(), out amount));
+
+            return amount;
         }
     }
 }
